@@ -59,7 +59,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run -nb black -nf green -sb white -sf tomato -l 5 -fn "Monospace-15:normal"
-bindsym $mod+d exec rofi -show run -lines 5 -eh 1 -columns 1 -width 30 -opacity "60" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -font "Monospace 15" -theme Arc-Dark
+bindsym $mod+x exec rofi -show run -lines 5 -eh 1 -columns 1 -width 30 -opacity "60" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -font "Monospace 15" -theme Arc-Dark
 
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -80,7 +80,7 @@ bindsym $mod+Left workspace prev
 bindsym $mod+Right workspace next
 
 bindsym $mod+Tab workspace next 
-bindsym $mod+Shift+Tab workspace next 
+bindsym $mod+Shift+Tab workspace prev 
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -113,12 +113,8 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
 bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
+bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -170,7 +166,7 @@ bindsym $mod+r mode "resize"
 bindsym Print exec gnome-screenshot
 bindsym $mod+Print exec gnome-screenshot
 bindsym $mod+Shift+x exec i3lock-fancy
-bindsym $alt+Tab exec rofi -show window -lines 10
+bindsym $alt+Tab exec rofi -show window -lines 10 -theme DarkBlue
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +3% #increase sound volume

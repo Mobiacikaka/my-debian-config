@@ -1,17 +1,6 @@
 
 # preset
 
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
-
 set $mod Mod4
 set $alt Mod1
 
@@ -24,7 +13,6 @@ font pango:monospace 12
 exec_always --no-startup-id ~/.config/i3/background.sh &
 exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
 exec_always --no-startup-id conky -c ~/.conky/shailen.conf &
-exec_always xset s off
 
 # key bindings
 
@@ -57,28 +45,6 @@ bindsym $mod+space          focus mode_toggle
 bindsym $mod+a              focus parent
 bindsym $mod+d              focus child
 
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
 bindsym $mod+Shift+q    kill
 bindsym $mod+Shift+c    reload
 bindsym $mod+Shift+r    restart
@@ -86,7 +52,7 @@ bindsym $mod+Shift+r    restart
 bindsym $mod+Shift+e    exec "i3-nagbar -t warning -m $exitmsg -B 'Yes, exit i3' 'i3-msg exit' -f pango:monospace 14"
 bindsym $mod+x          exec rofi -show run -lines 5 -eh 1 -columns 1 -width 30 -opacity "60" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -font "Monospace 15" -theme Arc-Dark
 bindsym $alt+Tab        exec rofi -show window -lines 10 -theme DarkBlue
-bindsym $mod+Shift+x          exec i3lock-fancy
+bindsym $mod+Shift+x    exec i3lock-fancy -p
 
 mode "resize" {
         bindsym j resize shrink width 5 px or 5 ppt
@@ -117,8 +83,10 @@ bindsym $mod+Return             exec terminator
 bindsym $mod+u                  exec google-chrome 
 bindsym $mod+i                  exec code 
 bindsym $mod+o                  exec nautilus
+bindsym $mod+m                  exec mendeleydesktop
 bindsym Print                   exec gnome-screenshot
 bindsym $mod+Print              exec gnome-screenshot
+bindsym $alt+q                  exec notitranslation 
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume 0 +3% #increase sound volume
@@ -138,7 +106,7 @@ bar {
     status_command ~/.config/i3/jconky
     position bottom
     mode hide
-    strip_workspace_numbers yes
+    strip_workspace_numbers no
     separator_symbol "  >  "
 
     colors {
@@ -171,6 +139,7 @@ client.background       #FFFFFF
 
 # windows specifier
 for_window [class="mpv"] floating enable
+for_window [class="xdman"] floating enable
 
 # assign [class="Terminator"] $ws1
 assign [class="chrome"]     $ws2
@@ -180,3 +149,62 @@ assign [class="Okular"]     $ws4
 assign [class="mpv"]        $ws10
 # assign [class=""]
 
+
+# Normal workspace
+set $ws1 "1:"
+set $ws2 "2:"
+set $ws3 "3:"
+set $ws4 "4:"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
+set $ws8 "8:"
+set $ws9 "9:"
+set $ws10 "10:"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Numeric workspace #
+# switch to workpace with numeric keyboard
+bindsym $mod+Mod2+KP_1 workspace _1
+bindsym $mod+Mod2+KP_2 workspace _2
+bindsym $mod+Mod2+KP_3 workspace _3
+bindsym $mod+Mod2+KP_4 workspace _4
+bindsym $mod+Mod2+KP_5 workspace _5
+bindsym $mod+Mod2+KP_6 workspace _6
+bindsym $mod+Mod2+KP_7 workspace _7
+bindsym $mod+Mod2+KP_8 workspace _8
+bindsym $mod+Mod2+KP_9 workspace _9
+bindsym $mod+Mod2+KP_0 workspace _10
+
+# move focused container to workspace with numpad
+bindsym $mod+Shift+Mod2+KP_1 move container to workspace _1
+bindsym $mod+Shift+Mod2+KP_2 move container to workspace _2
+bindsym $mod+Shift+Mod2+KP_3 move container to workspace _3
+bindsym $mod+Shift+Mod2+KP_4 move container to workspace _4
+bindsym $mod+Shift+Mod2+KP_5 move container to workspace _5
+bindsym $mod+Shift+Mod2+KP_6 move container to workspace _6
+bindsym $mod+Shift+Mod2+KP_7 move container to workspace _7
+bindsym $mod+Shift+Mod2+KP_8 move container to workspace _8
+bindsym $mod+Shift+Mod2+KP_9 move container to workspace _9
+bindsym $mod+Shift+Mod2+KP_0 move container to workspace _10

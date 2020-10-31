@@ -10,9 +10,13 @@ font pango:monospace 12
 
 # start up
 
-exec_always --no-startup-id ~/.config/i3/background.sh &
-exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
-exec_always --no-startup-id conky -c ~/.conky/shailen.conf &
+# exec_always --no-startup-id ~/.config/i3/background.sh &
+exec --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
+#exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
+exec_always --no-startup-id picom --config ~/.config/picom.conf
+exec_always --no-startup-id conky -c ~/.conky/shailen.conf
+exec_always --no-startup-id dunst 
+exec_always --no-startup-id ~/App/clash/clashr -d ~/App/clash/
 
 # key bindings
 
@@ -105,7 +109,7 @@ bar {
     modifier $mod
     status_command ~/.config/i3/jconky
     position bottom
-    mode hide
+    #mode hide
     strip_workspace_numbers no
     separator_symbol "  >  "
 
@@ -114,7 +118,7 @@ bar {
         statusline #FFFFFF
         separator  #3399FF
         # 工作区颜色         边框    背景    文字
-        focused_workspace  #FF1493 #111111EE #8A2BE2
+        focused_workspace  #FFFFFF #111111EE #8A2BE2
         active_workspace   #FFFFFF #FFFFFFEE #FFFFFF
         inactive_workspace #111111 #111111EE #FFFFFF
         urgent_workspace   #990000 #111111EE #FFFFFF
@@ -123,7 +127,8 @@ bar {
 }
 
 # border
-default_border pixel 3
+#default_border pixel 3
+default_border none
 
 # gaps
 gaps inner 10
@@ -138,8 +143,10 @@ client.placeholder      #000000 #000000 #FFFFFF #000000
 client.background       #FFFFFF
 
 # windows specifier
-for_window [class="mpv"] floating enable
-for_window [class="xdman"] floating enable
+for_window [class="mpv"] 		floating enable
+for_window [class="xdman"]		floating enable
+for_window [class="xdman"]		floating enable
+for_window [class="jetbrain"]	floating enable
 
 # assign [class="Terminator"] $ws1
 assign [class="chrome"]     $ws2
@@ -147,7 +154,7 @@ assign [class="Code"]       $ws3
 assign [class="Mendeley"]   $ws4
 assign [class="Okular"]     $ws4
 assign [class="mpv"]        $ws10
-# assign [class=""]
+assign [class="jetbrain"]	$ws7
 
 
 # Normal workspace

@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+"Plug 'vim-scripts/TeTrIs.vim'
 Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'davidhalter/jedi-vim'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer',  'for': ['c', 'cpp'] }
@@ -32,6 +33,7 @@ let g:gutentags_add_default_project_roots = 0
 " gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
 let g:gutentags_project_root = ['.root']
 
+
 " " 所生成的数据文件的名称 "
 let g:gutentags_ctags_tagfile = '.tags'
 
@@ -54,3 +56,7 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 
+" keyboard shortcuts remap
+imap jj <Esc>
+
+map <F2> :YcmCompleter FixIt

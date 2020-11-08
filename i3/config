@@ -10,34 +10,35 @@ font pango:monospace 12
 
 # start up
 
-# exec_always --no-startup-id ~/.config/i3/background.sh &
-exec --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
+exec_always --no-startup-id ~/.config/i3/background.sh
+#exec_always --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
 #exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
 exec_always --no-startup-id picom --config ~/.config/picom.conf
 exec_always --no-startup-id conky -c ~/.conky/shailen.conf
 exec_always --no-startup-id dunst 
 exec_always --no-startup-id ~/App/clash/clashr -d ~/App/clash/
+exec_always --no-startup-id ./noblank.sh 
 
 # key bindings
 
-bindsym $mod+j              focus left
-bindsym $mod+k              focus down
-bindsym $mod+l              focus up
-bindsym $mod+semicolon      focus right
+bindsym $mod+h              focus left
+bindsym $mod+j              focus down
+bindsym $mod+k              focus up
+bindsym $mod+l				focus right
 
 bindsym $mod+Left           workspace prev
 bindsym $mod+Right          workspace next
 bindsym $mod+Tab            workspace next 
 bindsym $mod+Shift+Tab      workspace prev 
 
-bindsym $mod+Shift+j        move left
-bindsym $mod+Shift+k        move down
-bindsym $mod+Shift+l        move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h        move left
+bindsym $mod+Shift+j        move down
+bindsym $mod+Shift+k        move up
+bindsym $mod+Shift+l		move right
 
 bindsym $mod+f              fullscreen toggle
 
-bindsym $mod+h              split h
+bindsym $mod+b				split h
 bindsym $mod+v              split v
 bindsym $mod+s              layout stacking
 bindsym $mod+w              layout tabbed
@@ -56,35 +57,35 @@ bindsym $mod+Shift+r    restart
 bindsym $mod+Shift+e    exec "i3-nagbar -t warning -m $exitmsg -B 'Yes, exit i3' 'i3-msg exit' -f pango:monospace 14"
 bindsym $mod+x          exec rofi -show run -lines 5 -eh 1 -columns 1 -width 30 -opacity "60" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -font "Monospace 15" -theme Arc-Dark
 bindsym $alt+Tab        exec rofi -show window -lines 10 -theme DarkBlue
-bindsym $mod+Shift+x    exec i3lock-fancy -p
+# bindsym $mod+Shift+x    exec i3lock-fancy -p
 
 mode "resize" {
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+    bindsym $mod+r mode "default"
 }
 
-mode "executor" {
-    bindsym 1 exec terminator
-    bindsym 2 exec google-chrome 
-    bindsym 3 exec code 
-    bindsym 4 exec mendeleydesktop
-    # bindsym 5 exec 
+bindsym $mod+r mode "resize"
+
+mode "lock-screen" {
+    bindsym 1 exec i3lock -i /media/justin/SWAP/github/i3lock-clock/images/background.png  && i3-msg 'mode default'
+    bindsym 2 exec i3lock-fancy && i3-msg 'mode default'
+    bindsym 3 exec i3lock-clock -i /media/justin/SWAP/github/i3lock-clock/images/background.png -c '#000000' -o '#191d0f' -w '#572020' -l '#ffffff' -e && i3-msg 'mode default'
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
-# bindsym $mod+$alt+x mode "executor"
+bindsym $mod+Shift+x    mode "lock-screen"
 
 # excutor
 bindsym $mod+Return             exec terminator
-bindsym $mod+u                  exec google-chrome 
+bindsym $mod+u                  exec firefox 
 bindsym $mod+i                  exec code 
 bindsym $mod+o                  exec nautilus
 bindsym $mod+m                  exec mendeleydesktop
@@ -149,7 +150,7 @@ for_window [class="xdman"]		floating enable
 for_window [class="jetbrain"]	floating enable
 
 # assign [class="Terminator"] $ws1
-assign [class="chrome"]     $ws2
+#assign [class="chrome"]     $ws2
 assign [class="Code"]       $ws3
 assign [class="Mendeley"]   $ws4
 assign [class="Okular"]     $ws4

@@ -10,8 +10,9 @@ font pango:monospace 12
 
 # start up
 
-exec_always --no-startup-id ~/.config/i3/background.sh
+#exec_always --no-startup-id ~/.config/i3/background.sh
 #exec_always --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/BackGround/75687751_p0.png
 #exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
 exec_always --no-startup-id picom --config ~/.config/picom.conf
 exec_always --no-startup-id conky -c ~/.conky/shailen.conf
@@ -84,7 +85,7 @@ mode "lock-screen" {
 bindsym $mod+Shift+x    mode "lock-screen"
 
 # excutor
-bindsym $mod+Return             exec terminator
+bindsym $mod+Return             exec urxvt
 bindsym $mod+u                  exec firefox 
 bindsym $mod+i                  exec code 
 bindsym $mod+o                  exec nautilus

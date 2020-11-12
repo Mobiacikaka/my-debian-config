@@ -146,7 +146,8 @@ bar {
 
 # border
 #default_border pixel 3
-default_border none
+#default_border none
+for_window [class=".*"] border pixel 4
 
 # gaps
 gaps inner 10
@@ -274,12 +275,18 @@ mode "$mode_gaps_left" {
 }
 
 # color themes
-client.focused          #FFFF0F #FFFF0F #FFFF0F #FFFF0F
-client.focused_inactive #999999 #999999 #FFFFFF #3399FF
-client.unfocused        #999999 #999999 #FFFFFF #3399FF
-client.urgent           #990000 #990000 #FFFFFF #990000
-client.placeholder      #000000 #000000 #FFFFFF #000000
-client.background       #FFFFFF
+#client.focused          #FFFF0F #FFFF0F #FFFF0F #FFFF0F
+#client.focused_inactive #999999 #999999 #FFFFFF #3399FF
+#client.unfocused        #999999 #999999 #FFFFFF #3399FF
+#client.urgent           #990000 #990000 #FFFFFF #990000
+#client.placeholder      #000000 #000000 #FFFFFF #000000
+#client.background       #FFFFFF
+client.focused          #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused_inactive #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.unfocused        #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.urgent           #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.placeholder      #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.background       #2f343f
 
 # windows specifier
 for_window [class="mpv"] 		floating enable

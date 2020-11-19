@@ -131,3 +131,6 @@ bindkey -v
 #bindkey '^S' history-incremental-search-forward  # Perform forward search in command line history
 #bindkey '^P' history-search-backward             # Go back/search in history (autocomplete)
 #bindkey '^N' history-search-forward              # Go forward/search in history (autocomplete)
+
+export VISUAL=vim
+export EDITOR=vim

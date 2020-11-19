@@ -24,25 +24,6 @@
 *foreground = ${xrdb:color7}
 *background = ${xrdb:color2}
 
-
-!! URxvt Appearance
-URxvt.font: xft:DejaVu Sans Mono:pixelsize=18
-URxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=18
-URxvt.italicFont: xft:DejaVu Sans Mono:pixelsize=18
-URxvt.boldItalicfont: xft:DejaVu Sans Mono:pixelsize=18
-URxvt.letterSpace: -1
-URxvt.lineSpace: 0
-URxvt.geometry: 92x24
-URxvt.internalBorder: 24
-URxvt.cursorBlink: true
-URxvt.cursorUnderline: false
-URxvt.saveline: 2048
-URxvt.scrollBar: false
-URxvt.scrollBar_right: false
-URxvt.urgentOnBell: true
-URxvt.depth: 24
-URxvt.iso14755: false
-
 xterm.font: xft:DejaVu Sans Mono:pixelsize=18
 
 rofi.color-enabled: true
@@ -60,3 +41,32 @@ rofi.columns: 2
 rofi.padding: 5
 rofi.fixed-num-lines: true
 rofi.hide-scrollbar: true
+
+!! URxvt Appearance
+URxvt.font: xft:DejaVu Sans Mono:pixelsize=18
+URxvt.boldFont: xft:DejaVu Sans Mono:pixelsize=18
+URxvt.italicFont: xft:DejaVu Sans Mono:pixelsize=18
+URxvt.boldItalicfont: xft:DejaVu Sans Mono:pixelsize=18
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.internalBorder: 24
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
+
+!! URxvt Shortcuts
+! URxvt.perl-ext-common: ...,keyboard-select
+! URxvt.keysym.Escape:   perl:keyboard-select:activate
+
+! URxvt.perl-ext-common: ...,clipboard
+! URxvt.keysym.Ctrl-Shift-c: perl:clipboard:copy
+! URxvt.keysym.Ctrl-Shift-v: perl:clipboard:paste
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard

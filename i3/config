@@ -12,13 +12,14 @@ font pango:monospace 12
 
 #exec_always --no-startup-id ~/.config/i3/background.sh
 #exec_always --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
-exec_always --no-startup-id feh --bg-scale ~/Pictures/BackGround/75687751_p0.png
+exec --no-startup-id feh --bg-scale ~/Pictures/BackGround/75687751_p0.png
 #exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
-exec_always --no-startup-id picom --config ~/.config/picom.conf
-exec_always --no-startup-id conky -c ~/.conky/shailen.conf
-exec_always --no-startup-id dunst 
-exec_always --no-startup-id ~/App/clash/clashr -d ~/App/clash/
-exec_always --no-startup-id ~/.config/i3/noblank.sh 
+exec --no-startup-id picom --config ~/.config/picom.conf
+exec --no-startup-id conky -c ~/.conky/shailen.conf
+exec --no-startup-id dunst 
+exec --no-startup-id ~/App/clash/clashr -d ~/App/clash/
+exec --no-startup-id ~/.config/i3/noblank.sh 
+exec --no-startup-id /usr/bin/udiskie
 
 # key bindings
 
@@ -94,6 +95,7 @@ bindsym Print                   exec gnome-screenshot
 bindsym $mod+Print              exec gnome-screenshot
 bindsym $alt+q                  exec notitranslation 
 bindsym $mod+Shift+s			exec flameshot gui
+bindsym $mod+Shift+w			exec ~/.config/i3/i3-layout-manager/layout_manager.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume 0 +3% #increase sound volume
@@ -132,6 +134,7 @@ bindsym XF86MonBrightnessDown   exec xbacklight -dec 10 # decrease screen bright
 bar {
     font pango:DejaVu Sans Mono, FontAwesome 12 
     position top
+	# mode hide
 	height 30
     status_command ~/.local/bin/i3status-rs ~/.config/i3/theme.toml
     colors {
@@ -291,6 +294,7 @@ client.background       #2f343f
 
 # windows specifier
 for_window [class="mpv"] 		floating enable
+for_window [class="vlc"] 		floating enable
 for_window [class="xdman"]		floating enable
 for_window [class="xdman"]		floating enable
 for_window [class="jetbrain"]	floating enable

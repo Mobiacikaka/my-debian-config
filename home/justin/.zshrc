@@ -122,7 +122,7 @@ if (( $+commands[pip] )); then
   unset cache_file
 fi
 
-bindkey -v
+#bindkey -v
 
 #autoload -U edit-command-line
 #zle -N edit-command-line
@@ -132,5 +132,5 @@ bindkey -v
 #bindkey '^P' history-search-backward             # Go back/search in history (autocomplete)
 #bindkey '^N' history-search-forward              # Go forward/search in history (autocomplete)
 
-export VISUAL=vim
-export EDITOR=vim
+#export VISUAL=vim
+#export EDITOR=vim

@@ -1,11 +1,10 @@
 icons = "awesome"
 
 [theme]
-name = "solarized-light"
-#name = "space-villain"
-# [theme.overrides]
+name = "solarized-dark"
+[theme.overrides]
 # idle_bg = "#123456"
-# idle_fg = "#abcdef"
+idle_fg = "#abcdef"
 
 [[block]]
 block = "disk_space"
@@ -14,7 +13,15 @@ alias = "/"
 info_type = "available"
 interval = 60
 unit = "GiB"
-format = "{icon}{used}/{total} {unit} ({available}{unit} free)"
+format = "{icon}{used}/{total}{unit} ({available}{unit} free)"
+
+[[block]]
+block = "nvidia_gpu"
+label = "GTX 1080"
+show_memory = true
+show_clocks = false
+show_temperature = true
+interval = 1
 
 [[block]]
 block = "memory"
@@ -30,7 +37,8 @@ critical_swap = 75
 
 [[block]]
 block = "cpu"
-format = "{barchart} {utilization}% {frequency}GHz"
+# format = "{barchart} {utilization}% {frequency}GHz"
+format = "{utilization}% {frequency}GHz"
 interval = 1
 
 [[block]]
@@ -42,6 +50,17 @@ format = "{1m}"
 block = "sound"
 
 [[block]]
+block = "backlight"
+device = "intel_backlight"
+
+[[block]]
+block = "battery"
+#driver = "upower"
+interval = 10
+format = "{percentage}% {time}"
+
+[[block]]
 block = "time"
 interval = 60
 format = "%a %m-%d %R"
+

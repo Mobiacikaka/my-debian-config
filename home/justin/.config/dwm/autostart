@@ -1,0 +1,13 @@
+
+nohup feh --bg-fill $HOME/Pictures/BackGround/75687751_p0.png 		> "/tmp/feh.$(date).log" 				2>&1 &
+
+pkill dunst; nohup dunst 											> "/tmp/dunst.$(date).log" 				2>&1 &
+pkill fcitx; nohup fcitx 											> "/tmp/fcitx.$(date).log" 				2>&1 &
+pkill clashr; nohup $HOME/App/clash/clashr -d $HOME/App/clash/ 		> "/tmp/clashr.$(date).log" 			2>&1 &
+pkill dwmblocks; nohup /usr/local/bin/dwmblocks 					> "/tmp/dwmblocks.$(date).log" 			2>&1 &
+pkill udiskie; nohup udiskie										> "/tmp/udiskie.$(date).log"			2>&1 &
+
+/home/justin/.config/dwm/noblank									> "/tmp/noblank.sh.$(date).log" 		2>&1 &
+xbindkeys -f $HOME/.xbindkeysrc
+
+notify-send -u low dwm autostart finish

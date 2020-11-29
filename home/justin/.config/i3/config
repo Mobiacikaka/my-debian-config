@@ -6,32 +6,42 @@ set $alt Mod1
 
 set $exitmsg 'Do you want to exit i3?'
 
-font pango:monospace 12
+font pango:monospace 10
 
 # start up
 
 #exec_always --no-startup-id ~/.config/i3/background.sh
 #exec_always --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
-exec --no-startup-id feh --bg-scale ~/Pictures/BackGround/75687751_p0.png
+exec_always --no-startup-id feh --bg-scale ~/Pictures/BackGround/76020094_p0.png
 #exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
-exec --no-startup-id picom --config ~/.config/picom.conf
-exec --no-startup-id conky -c ~/.conky/shailen.conf
-exec --no-startup-id dunst 
+#exec --no-startup-id picom --config ~/.config/picom.conf
+#exec --no-startup-id conky -c ~/.conky/shailen.conf
+exec_always --no-startup-id pkill dunst; dunst 
 exec --no-startup-id ~/App/clash/clashr -d ~/App/clash/
-exec --no-startup-id ~/.config/i3/noblank.sh 
+exec_always --no-startup-id ~/.config/i3/noblank.sh 
 exec --no-startup-id /usr/bin/udiskie
 
 # key bindings
-
+# shortcuts
 bindsym $mod+h              focus left
 bindsym $mod+j              focus down
 bindsym $mod+k              focus up
 bindsym $mod+l				focus right
 
+# move floating window
+#bindsym $mod+$alt+h				move left	20 px
+#bindsym $mod+$alt+j				move down	20 px
+#bindsym $mod+$alt+k				move up		20 px
+#bindsym $mod+$alt+l				move right	20 px
+
+# workspace moving
 bindsym $mod+Left           workspace prev
 bindsym $mod+Right          workspace next
-bindsym $mod+Tab            workspace next 
-bindsym $mod+Shift+Tab      workspace prev 
+bindsym $mod+Tab            workspace next
+bindsym $mod+Shift+Tab      exec i3-msg workspace prev
+bindsym Ctrl+$mod+h			workspace prev
+bindsym Ctrl+$mod+l			workspace next
+bindcode $mod+49			workspace back_and_forth
 
 bindsym $mod+Shift+h        move left
 bindsym $mod+Shift+j        move down
@@ -40,6 +50,7 @@ bindsym $mod+Shift+l		move right
 
 bindsym $mod+f              fullscreen toggle
 
+# view settings
 bindsym $mod+b				split h
 bindsym $mod+v              split v
 bindsym $mod+s              layout stacking
@@ -52,50 +63,40 @@ bindsym $mod+space          focus mode_toggle
 bindsym $mod+a              focus parent
 bindsym $mod+d              focus child
 
-bindsym $mod+Shift+q    kill
+bindsym Ctrl+q    kill
 bindsym $mod+Shift+c    reload
 bindsym $mod+Shift+r    restart
 
 bindsym $mod+Shift+e    exec "i3-nagbar -t warning -m $exitmsg -B 'Yes, exit i3' 'i3-msg exit' -f pango:monospace 14"
-bindsym $mod+x          exec rofi -show run -lines 5 -eh 1 -columns 1 -width 30 -opacity "60" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -font "Monospace 15" -theme Arc-Dark
+#bindsym $mod+x          exec rofi -show run -lines 5 -eh 1 -columns 1 -width 30 -opacity "60" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -font "Monospace 15"
+bindsym $mod+x			exec rofi -show run -lines 7
 bindsym $alt+Tab        exec rofi -show window -lines 10 -theme DarkBlue
-# bindsym $mod+Shift+x    exec i3lock-fancy -p
 
 mode "resize" {
     bindsym h resize shrink width 5 px or 5 ppt
     bindsym j resize grow height 5 px or 5 ppt
     bindsym k resize shrink height 5 px or 5 ppt
     bindsym l resize grow width 5 px or 5 ppt
-
     bindsym Escape mode "default"
     bindsym Return mode "default"
     bindsym $mod+r mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 mode "lock-screen" {
     bindsym 1 exec i3lock -i /media/justin/SWAP/github/i3lock-clock/images/background.png  && i3-msg 'mode default'
     bindsym 2 exec i3lock-fancy && i3-msg 'mode default'
     bindsym 3 exec i3lock-clock -i /media/justin/SWAP/github/i3lock-clock/images/background.png -c '#000000' -o '#191d0f' -w '#572020' -l '#ffffff' -e && i3-msg 'mode default'
-
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-
 bindsym $mod+Shift+x    mode "lock-screen"
 
 # excutor
-bindsym $mod+Return             exec urxvt
-bindsym $mod+u                  exec firefox 
-bindsym $mod+i                  exec code 
-bindsym $mod+o                  exec nautilus
-bindsym $mod+m                  exec mendeleydesktop
+bindsym $mod+Return             exec terminator #urxvt
 bindsym Print                   exec gnome-screenshot
-bindsym $mod+Print              exec gnome-screenshot
 bindsym $alt+q                  exec notitranslation 
 bindsym $mod+Shift+s			exec flameshot gui
-bindsym $mod+Shift+w			exec ~/.config/i3/i3-layout-manager/layout_manager.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume    exec --no-startup-id pactl set-sink-volume 0 +3% #increase sound volume
@@ -106,37 +107,13 @@ bindsym XF86MonBrightnessUp     exec xbacklight -inc 10 # increase screen bright
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 10 # decrease screen brightness
 
 # bar
-# bar {
-#     font pango:monospace 15, FontAwesome 15
-#     i3bar_command i3bar -t
-#     height 40
-#     tray_output primary
-#     modifier $mod
-#     status_command ~/.config/i3/jconky
-#     position top 
-#     #mode hide
-#     strip_workspace_numbers no
-#     separator_symbol "  >  "
-# 
-#     colors {
-#         background #101010AA
-#         statusline #FFFFFF
-#         separator  #3399FF
-#         # 工作区颜色         边框    背景    文字
-#         focused_workspace  #FFFFFF #111111EE #8A2BE2
-#         active_workspace   #FFFFFF #FFFFFFEE #FFFFFF
-#         inactive_workspace #111111 #111111EE #FFFFFF
-#         urgent_workspace   #990000 #111111EE #FFFFFF
-#         binding_mode       #990000 #990000EE #FFFFFF
-#     }
-# }
-
 bar {
-    font pango:DejaVu Sans Mono, FontAwesome 12 
-    position top
-	# mode hide
-	height 30
-    status_command ~/.local/bin/i3status-rs ~/.config/i3/theme.toml
+    font pango:DejaVu Sans Mono, FontAwesome 11
+    position bottom
+	mode hide
+	height 25
+    status_command ~/.local/bin/i3status-rs ~/.config/i3/theme.toml 
+	# status_command i3status | i3status-title-on-bar --color '#02FFBF'
     colors {
         separator #666666
         background #222222
@@ -148,14 +125,21 @@ bar {
     }
 }
 
+bindsym $mod+Shift+b bar mode toggle
+
 # border
+hide_edge_borders none
 #default_border pixel 3
 #default_border none
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 2
+
+popup_during_fullscreen smart
 
 # gaps
-gaps inner 10
-gaps outer 2
+gaps inner 0
+gaps outer 0
+
+bindsym $mod+buttom4 gaps outer current plus 5
 
 set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -279,13 +263,7 @@ mode "$mode_gaps_left" {
 }
 
 # color themes
-#client.focused          #FFFF0F #FFFF0F #FFFF0F #FFFF0F
-#client.focused_inactive #999999 #999999 #FFFFFF #3399FF
-#client.unfocused        #999999 #999999 #FFFFFF #3399FF
-#client.urgent           #990000 #990000 #FFFFFF #990000
-#client.placeholder      #000000 #000000 #FFFFFF #000000
-#client.background       #FFFFFF
-client.focused          #bf616a #2f343f #d8dee8 #bf616a #d8dee8
+client.focused          #bf616a #2f343f #d8dee8 #d8dee8 #d8dee8
 client.focused_inactive #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.unfocused        #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.urgent           #2f343f #2f343f #d8dee8 #2f343f #2f343f
@@ -293,19 +271,19 @@ client.placeholder      #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background       #2f343f
 
 # windows specifier
-for_window [class="mpv"] 		floating enable
-for_window [class="vlc"] 		floating enable
+#for_window [class="mpv"] 		floating enable
+#for_window [class="vlc"] 		floating enable
 for_window [class="xdman"]		floating enable
 for_window [class="xdman"]		floating enable
 for_window [class="jetbrain"]	floating enable
 
 # assign [class="Terminator"] $ws1
 #assign [class="chrome"]     $ws2
-assign [class="Code"]       $ws3
-assign [class="Mendeley"]   $ws4
-assign [class="Okular"]     $ws4
-assign [class="mpv"]        $ws10
-assign [class="jetbrain"]	$ws7
+#assign [class="Code"]       $ws3
+#assign [class="Mendeley"]   $ws4
+#assign [class="Okular"]     $ws4
+#assign [class="mpv"]        $ws10
+#assign [class="jetbrain"]	$ws7
 
 
 # Normal workspace
@@ -313,12 +291,12 @@ set $ws1 "1:"
 set $ws2 "2:"
 set $ws3 "3:"
 set $ws4 "4:"
-set $ws5 "5:"
+set $ws5 "5:"
 set $ws6 "6:"
 set $ws7 "7:"
 set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws9 "9:"
+set $ws10 "10:"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -344,25 +322,25 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Numeric workspace #
 # switch to workpace with numeric keyboard
-bindsym $mod+Mod2+KP_1 workspace _1
-bindsym $mod+Mod2+KP_2 workspace _2
-bindsym $mod+Mod2+KP_3 workspace _3
-bindsym $mod+Mod2+KP_4 workspace _4
-bindsym $mod+Mod2+KP_5 workspace _5
-bindsym $mod+Mod2+KP_6 workspace _6
-bindsym $mod+Mod2+KP_7 workspace _7
-bindsym $mod+Mod2+KP_8 workspace _8
-bindsym $mod+Mod2+KP_9 workspace _9
-bindsym $mod+Mod2+KP_0 workspace _10
+#bindsym $mod+Mod2+KP_1 workspace 1
+#bindsym $mod+Mod2+KP_2 workspace 2
+#bindsym $mod+Mod2+KP_3 workspace 3
+#bindsym $mod+Mod2+KP_4 workspace 4
+#bindsym $mod+Mod2+KP_5 workspace 5
+#bindsym $mod+Mod2+KP_6 workspace 6
+#bindsym $mod+Mod2+KP_7 workspace 7
+#bindsym $mod+Mod2+KP_8 workspace 8
+#bindsym $mod+Mod2+KP_9 workspace 9
+#bindsym $mod+Mod2+KP_0 workspace 10
 
 # move focused container to workspace with numpad
-bindsym $mod+Shift+Mod2+KP_1 move container to workspace _1
-bindsym $mod+Shift+Mod2+KP_2 move container to workspace _2
-bindsym $mod+Shift+Mod2+KP_3 move container to workspace _3
-bindsym $mod+Shift+Mod2+KP_4 move container to workspace _4
-bindsym $mod+Shift+Mod2+KP_5 move container to workspace _5
-bindsym $mod+Shift+Mod2+KP_6 move container to workspace _6
-bindsym $mod+Shift+Mod2+KP_7 move container to workspace _7
-bindsym $mod+Shift+Mod2+KP_8 move container to workspace _8
-bindsym $mod+Shift+Mod2+KP_9 move container to workspace _9
-bindsym $mod+Shift+Mod2+KP_0 move container to workspace _10
+#bindsym $mod+Shift+Mod2+KP_1 move container to workspace 1
+#bindsym $mod+Shift+Mod2+KP_2 move container to workspace 2
+#bindsym $mod+Shift+Mod2+KP_3 move container to workspace 3
+#bindsym $mod+Shift+Mod2+KP_4 move container to workspace 4
+#bindsym $mod+Shift+Mod2+KP_5 move container to workspace 5
+#bindsym $mod+Shift+Mod2+KP_6 move container to workspace 6
+#bindsym $mod+Shift+Mod2+KP_7 move container to workspace 7
+#bindsym $mod+Shift+Mod2+KP_8 move container to workspace 8
+#bindsym $mod+Shift+Mod2+KP_9 move container to workspace 9
+#bindsym $mod+Shift+Mod2+KP_0 move container to workspace 10

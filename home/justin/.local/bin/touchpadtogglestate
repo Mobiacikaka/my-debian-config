@@ -1,0 +1,37 @@
+#!/bin/bash
+enabled=1
+disabled=0
+id=$(xinput list | grep Touchpad | awk -F'[=[]' '{print $2}')
+prestate=$(xinput --list --long $id | grep This | awk -F'device is ' '{print $2}')
+count=$#
+
+helpmessage() 
+{
+	echo Help Message
+	echo use \'touchpadtogglestate 0/1\' to set the value
+	echo use \'touchpadtogglestate\' to toggle the value between 0 and 1	
+}
+
+if [ $count -ne 0 ] && [ $count -ne 1 ]; then
+	helpmessage
+	exit
+fi
+
+if [ $count == 1 ]; then
+	prop=$1
+	if [ $prop == $enabled ] || [ $prop == $disabled ]
+	then
+		xinput set-prop $id "Device Enabled" $prop
+	else
+		helpmessage
+		exit
+	fi
+else
+	if [[ $prestate == 'disabled' ]]; then
+		echo Toggle state to \"Enabled\"
+		xinput set-prop $id "Device Enabled" $enabled
+	elif [ -z $prestate ]; then
+		echo Toggle state to \"Disabled\"
+		xinput set-prop $id "Device Enabled" $disabled
+	fi
+fi

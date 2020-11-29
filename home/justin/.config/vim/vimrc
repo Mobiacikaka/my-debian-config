@@ -4,6 +4,8 @@ Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'davidhalter/jedi-vim'
 Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer',  'for': ['c', 'cpp'] }
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 "Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 "Plug 'ludovicchabant/vim-gutentags'
 "Plug 'junegunn/fzf', { 'do': './install --all' }
@@ -85,3 +87,6 @@ set laststatus=2
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
+nmap <C-s> <Plug>MarkdownPreview
+nmap <M-s> <Plug>MarkdownPreviewStop
+nmap <C-p> <Plug>MarkdownPreviewToggle

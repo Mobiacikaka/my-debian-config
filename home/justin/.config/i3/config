@@ -9,7 +9,7 @@ set $exitmsg 'Do you want to exit i3?'
 font pango:monospace 10
 
 # start up
-
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #exec_always --no-startup-id ~/.config/i3/background.sh
 #exec_always --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
 exec_always --no-startup-id feh --bg-scale ~/Pictures/BackGround/76020094_p0.png
@@ -105,27 +105,6 @@ bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute 0 toggl
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 10 # decrease screen brightness
-
-# bar
-bar {
-    font pango:DejaVu Sans Mono, FontAwesome 11
-    position bottom
-	mode hide
-	height 25
-    status_command ~/.local/bin/i3status-rs ~/.config/i3/theme.toml 
-	# status_command i3status | i3status-title-on-bar --color '#02FFBF'
-    colors {
-        separator #666666
-        background #222222
-        statusline #dddddd
-        focused_workspace #0088CC #0088CC #ffffff
-        active_workspace #333333 #333333 #ffffff
-        inactive_workspace #333333 #333333 #888888
-        urgent_workspace #2f343a #900000 #ffffff
-    }
-}
-
-bindsym $mod+Shift+b bar mode toggle
 
 # border
 hide_edge_borders none

@@ -9,10 +9,8 @@ set $exitmsg 'Do you want to exit i3?'
 font pango:monospace 10
 
 # start up
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-#exec_always --no-startup-id ~/.config/i3/background.sh
-#exec_always --no-startup-id feh --bg-scale ~/Pictures/utils/vim2.png
-exec_always --no-startup-id feh --bg-scale ~/Pictures/BackGround/76020094_p0.png
+
+exec_always --no-startup-id $HOME/.config/i3/background/background.sh
 #exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
 #exec --no-startup-id picom --config ~/.config/picom.conf
 #exec --no-startup-id conky -c ~/.conky/shailen.conf
@@ -105,6 +103,52 @@ bindsym XF86AudioMute           exec --no-startup-id pactl set-sink-mute 0 toggl
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp     exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown   exec xbacklight -dec 10 # decrease screen brightness
+
+#bar
+bar {
+    font pango:monospace 12, FontAwesome 12
+    i3bar_command i3bar -t
+    height 30
+    tray_output primary
+    modifier $mod
+    status_command $HOME/.config/i3/i3bar/jconky
+    position bottom
+    mode hide
+    strip_workspace_numbers no
+    separator_symbol "  >  "
+
+    colors {
+        background #101010AA
+        statusline #FFFFFF
+        separator  #3399FF
+        # 工作区颜色         边框    背景    文字
+        focused_workspace  #FFFFFF #111111EE #8A2BE2
+        active_workspace   #FFFFFF #FFFFFFEE #FFFFFF
+        inactive_workspace #111111 #111111EE #FFFFFF
+        urgent_workspace   #990000 #111111EE #FFFFFF
+        binding_mode       #990000 #990000EE #FFFFFF
+    }
+}
+
+#bar {
+#    font pango:DejaVu Sans Mono, FontAwesome 11
+#    position bottom
+#	mode hide
+#	height 25
+#    status_command ~/.local/bin/i3status-rs ~/.config/i3/theme.toml 
+#	# status_command i3status | i3status-title-on-bar --color '#02FFBF'
+#    colors {
+#        separator #666666
+#        background #222222
+#        statusline #dddddd
+#        focused_workspace #0088CC #0088CC #ffffff
+#        active_workspace #333333 #333333 #ffffff
+#        inactive_workspace #333333 #333333 #888888
+#        urgent_workspace #2f343a #900000 #ffffff
+#    }
+#}
+
+bindsym $mod+Shift+b bar mode toggle
 
 # border
 hide_edge_borders none
@@ -252,6 +296,8 @@ client.background       #2f343f
 # windows specifier
 #for_window [class="mpv"] 		floating enable
 #for_window [class="vlc"] 		floating enable
+for_window [class="Seafile"]	floating enable
+for_window [class="URxvt"]		floating enable
 for_window [class="xdman"]		floating enable
 for_window [class="xdman"]		floating enable
 for_window [class="jetbrain"]	floating enable
@@ -266,16 +312,16 @@ for_window [class="jetbrain"]	floating enable
 
 
 # Normal workspace
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws4 "4:"
-set $ws5 "5:"
-set $ws6 "6:"
-set $ws7 "7:"
-set $ws8 "8:"
-set $ws9 "9:"
-set $ws10 "10:"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2

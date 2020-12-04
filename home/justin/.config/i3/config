@@ -10,9 +10,10 @@ font pango:monospace 10
 
 # start up
 
-exec_always --no-startup-id $HOME/.config/i3/background/background.sh
+exec_always --no-startup-id feh --bg-fill $HOME/.config/i3/background/*.png
+#exec_always --no-startup-id $HOME/.config/i3/background/background.sh
 #exec_always --no-startup-id picom -f -i 0.7 -m 0.8 -c -D 10
-#exec --no-startup-id picom --config ~/.config/picom.conf
+#exec --no-startup-id conky
 #exec --no-startup-id conky -c ~/.conky/shailen.conf
 exec_always --no-startup-id pkill dunst; dunst 
 exec --no-startup-id ~/App/clash/clashr -d ~/App/clash/
@@ -20,6 +21,8 @@ exec_always --no-startup-id ~/.config/i3/noblank.sh
 exec --no-startup-id /usr/bin/udiskie
 
 # key bindings
+#bindsym $mod+m				exec --no-startup-id $HOME/github/i3-layout-manager/layout_manager.sh
+
 # shortcuts
 bindsym $mod+h              focus left
 bindsym $mod+j              focus down

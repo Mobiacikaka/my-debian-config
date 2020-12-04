@@ -51,6 +51,11 @@ bindsym $mod+Shift+l		move right
 
 bindsym $mod+f              fullscreen toggle
 
+bindsym $mod+Shift+minus 	move scratchpad
+bindsym $mod+minus 			scratchpad show
+
+bindsym $mod+y				sticky toggle
+
 # view settings
 bindsym $mod+b				split h
 bindsym $mod+v              split v
@@ -326,16 +331,21 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 exec $HOME/.config/i3/workspace.sh 1
+bindsym $mod+2 exec $HOME/.config/i3/workspace.sh 2
+bindsym $mod+3 exec $HOME/.config/i3/workspace.sh 3
+bindsym $mod+4 exec $HOME/.config/i3/workspace.sh 4
+bindsym $mod+5 exec $HOME/.config/i3/workspace.sh 5
+#bindsym $mod+1 workspace $ws1
+#bindsym $mod+2 workspace $ws2
+#bindsym $mod+3 workspace $ws3
+#bindsym $mod+4 workspace $ws4
+#bindsym $mod+5 workspace $ws5
+#bindsym $mod+6 workspace $ws6
+#bindsym $mod+7 workspace $ws7
+#bindsym $mod+8 workspace $ws8
+#bindsym $mod+9 workspace $ws9
+#bindsym $mod+0 workspace $ws10
 
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
@@ -348,27 +358,3 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Numeric workspace #
-# switch to workpace with numeric keyboard
-#bindsym $mod+Mod2+KP_1 workspace 1
-#bindsym $mod+Mod2+KP_2 workspace 2
-#bindsym $mod+Mod2+KP_3 workspace 3
-#bindsym $mod+Mod2+KP_4 workspace 4
-#bindsym $mod+Mod2+KP_5 workspace 5
-#bindsym $mod+Mod2+KP_6 workspace 6
-#bindsym $mod+Mod2+KP_7 workspace 7
-#bindsym $mod+Mod2+KP_8 workspace 8
-#bindsym $mod+Mod2+KP_9 workspace 9
-#bindsym $mod+Mod2+KP_0 workspace 10
-
-# move focused container to workspace with numpad
-#bindsym $mod+Shift+Mod2+KP_1 move container to workspace 1
-#bindsym $mod+Shift+Mod2+KP_2 move container to workspace 2
-#bindsym $mod+Shift+Mod2+KP_3 move container to workspace 3
-#bindsym $mod+Shift+Mod2+KP_4 move container to workspace 4
-#bindsym $mod+Shift+Mod2+KP_5 move container to workspace 5
-#bindsym $mod+Shift+Mod2+KP_6 move container to workspace 6
-#bindsym $mod+Shift+Mod2+KP_7 move container to workspace 7
-#bindsym $mod+Shift+Mod2+KP_8 move container to workspace 8
-#bindsym $mod+Shift+Mod2+KP_9 move container to workspace 9
-#bindsym $mod+Shift+Mod2+KP_0 move container to workspace 10
